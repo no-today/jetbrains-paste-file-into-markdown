@@ -1,0 +1,53 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>io.github.no-today.jetbrains-paste-file-into-markdown</id>
+    <version>2023.05.11</version>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Paste File Into Markdown</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="no.today@outlook.com" url="https://github.com/no-today">no-today</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Paste file into markdown<br>
+    file save into local/cloud
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Settings -->
+        <applicationConfigurable parentId="tools"
+                                 displayName="Paste File Into Markdown"
+                                 id="io.github.notoday.jetbrains.paste.file.into.markdown.settings.AppSettingsConfigurable"
+                                 instance="io.github.notoday.jetbrains.paste.file.into.markdown.settings.AppSettingsConfigurable"/>
+
+        <!-- Notification -->
+        <notificationGroup id="FileStorageNotification"
+                           displayType="TOOL_WINDOW"
+                           hideFromSettings="true"/>
+
+        <!-- Settings Persistence -->
+        <applicationService
+                serviceImplementation="io.github.notoday.jetbrains.paste.file.into.markdown.settings.AppSettingsState"/>
+
+        <!-- Listen Paste Event -->
+        <editorActionHandler action="EditorPaste"
+                             implementationClass="io.github.notoday.jetbrains.paste.file.into.markdown.action.MarkdownPasteFileActionHandler"
+                             order="first"/>
+    </extensions>
+
+    <actions>
+
+    </actions>
+</idea-plugin>
